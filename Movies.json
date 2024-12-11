@@ -1,0 +1,72 @@
+[
+  {
+    "title": "Inception",
+    "overview": "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a CEO.",
+    "director": "Christopher Nolan",
+    "genres": ["Action", "Adventure", "Sci-Fi"],
+    "releaseDate": "2010-07-16"
+  },
+  {
+    "title": "The Shawshank Redemption",
+    "overview": "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
+    "director": "Frank Darabont",
+    "genres": ["Drama"],
+    "releaseDate": "1994-09-22"
+  },
+  {
+    "title": "The Godfather",
+    "overview": "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.",
+    "director": "Francis Ford Coppola",
+    "genres": ["Crime", "Drama"],
+    "releaseDate": "1972-03-24"
+  },
+  {
+    "title": "The Dark Knight",
+    "overview": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.",
+    "director": "Christopher Nolan",
+    "genres": ["Action", "Crime", "Drama"],
+    "releaseDate": "2008-07-18"
+  },
+  {
+    "title": "Pulp Fiction",
+    "overview": "The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
+    "director": "Quentin Tarantino",
+    "genres": ["Crime", "Drama"],
+    "releaseDate": "1994-10-14"
+  },
+  {
+    "title": "Forrest Gump",
+    "overview": "The presidencies of Kennedy and Johnson, the events of Vietnam, Watergate, and other historical events unfold from the perspective of an Alabama man with an IQ of 75.",
+    "director": "Robert Zemeckis",
+    "genres": ["Drama", "Romance"],
+    "releaseDate": "1994-07-06"
+  },
+  {
+    "title": "The Matrix",
+    "overview": "A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.",
+    "director": "The Wachowskis",
+    "genres": ["Action", "Sci-Fi"],
+    "releaseDate": "1999-03-31"
+  },
+  {
+    "title": "Gladiator",
+    "overview": "A former Roman General sets out to exact vengeance against the corrupt emperor who murdered his family and sent him into slavery.",
+    "director": "Ridley Scott",
+    "genres": ["Action", "Adventure", "Drama"],
+    "releaseDate": "2000-05-05"
+  },
+  {
+    "title": "Interstellar",
+    "overview": "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
+    "director": "Christopher Nolan",
+    "genres": ["Adventure", "Drama", "Sci-Fi"],
+    "releaseDate": "2014-11-07"
+  },
+  {
+    "title": "Parasite",
+    "overview": "Greed and class discrimination threaten the newly formed symbiotic relationship between the wealthy Park family and the destitute Kim clan.",
+    "director": "Bong Joon Ho",
+    "genres": ["Comedy", "Drama", "Thriller"],
+    "releaseDate": "2019-05-30"
+  }
+]
