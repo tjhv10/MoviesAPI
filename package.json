@@ -15,6 +15,7 @@
   "dependencies": {
     "body-parser": "^1.20.3",
     "express": "^4.21.2",
+    "module": "^1.2.5",
     "nodeman": "^1.1.2"
   }
 }

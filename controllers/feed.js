@@ -1,16 +1,84 @@
-exports.getPosts = (req, res, next) => {
+const fs = require("fs");
+var data = require("../Movies.json");
+const { log } = require("console");
+// /getAllMovies
+exports.getMovies = (req, res) => {
   res.status(200).json({
-    posts: [{ title: "First Post", content: "This is the first post!" }],
+    data,
   });
 };
 
-exports.createPost = (req, res, next) => {
-  const title = req.body.title;
-  const content = req.body.content;
-  // Create post in db
-  res.status(201).json({
-    message: "Post created successfully!",
-    post: { id: new Date().toISOString(), title: title, content: content },
+// /getMovie/:id
+exports.getMoviesById = (req, res) => {
+  var movie = data.filter(function (entry) {
+    return entry.id === parseInt(req.url.split("/")[2]);
+  });
+  res.status(200).json({
+    movie,
   });
 };
-module.exports = router;
+
+// /addMovie
+exports.createPost = (req, res, next) => {
+  const { title, overview, director, genres, releaseDate } = req.body;
+
+  let readData = fs.readFileSync("Movies.json");
+  const movie = {
+    id: Object.keys(data).length + 1,
+    title: title,
+    overview: overview,
+    director: director,
+    genres: genres,
+    releaseDate: releaseDate,
+  };
+  const jsonData = JSON.parse(readData);
+  jsonData.push(movie);
+  jsonString = JSON.stringify(jsonData);
+  fs.writeFileSync("Movies.json", jsonString, "utf-8", (err) => {
+    if (err) throw err;
+    console.log("Data added to file");
+  });
+
+  res.status(201).json({
+    message: "Post created successfully!",
+    id: movie.id,
+    title: movie.title,
+  });
+};
+// /deleteMovie/:id
+exports.deleteMoviesById = (req, res) => {
+  let id = parseInt(req.url.split("/")[2]);
+  data.splice(id - 1, 1);
+  console.log(data);
+  jsonString = JSON.stringify(data);
+  fs.writeFileSync("Movies.json", jsonString, "utf-8", (err) => {
+    if (err) throw err;
+    console.log("Data added to file");
+  });
+  res.status(200).json({
+    id,
+  });
+};
+// /editMovie/:id
+exports.editMovieById = (req, res) => {
+  const { title, overview, director, genres, releaseDate } = req.body;
+  let id = parseInt(req.url.split("/")[2]);
+  const movie = {
+    id: id,
+    title: title,
+    overview: overview,
+    director: director,
+    genres: genres,
+    releaseDate: releaseDate,
+  };
+  data.splice(id - 1, 1, movie);
+  console.log(data);
+  jsonString = JSON.stringify(data);
+  fs.writeFileSync("Movies.json", jsonString, "utf-8", (err) => {
+    if (err) throw err;
+    console.log("Data added to file");
+  });
+  res.status(200).json({
+    id,
+  });
+};
