@@ -1,6 +1,5 @@
 const fs = require("fs");
 var data = require("../Movies.json");
-const { log } = require("console");
 // /getAllMovies
 exports.getMovies = (req, res) => {
   res.status(200).json({
@@ -23,8 +22,13 @@ exports.createPost = (req, res, next) => {
   const { title, overview, director, genres, releaseDate } = req.body;
 
   let readData = fs.readFileSync("Movies.json");
+  console.log(readData);
+
+  var lastId = data[data.length - 1].id;
+  console.log(lastId);
+
   const movie = {
-    id: Object.keys(data).length + 1,
+    id: lastId + 1,
     title: title,
     overview: overview,
     director: director,
