@@ -46,7 +46,7 @@ exports.createPost = (req, res) => {
   });
 
   res.status(201).json({
-    message: "Post created successfully!",
+    message: "Movie created successfully!",
     id: movie.id,
     title: movie.title,
   });
@@ -60,7 +60,7 @@ exports.deleteMoviesById = (req, res) => {
   jsonString = JSON.stringify(data);
   fs.writeFileSync("Movies.json", jsonString, "utf-8", (err) => {
     if (err) throw err;
-    console.log("Data added to file");
+    console.log("Movie added to file");
   });
   res.status(200).json({
     id,
@@ -85,7 +85,7 @@ exports.editMovieById = (req, res) => {
   jsonString = JSON.stringify(data);
   fs.writeFileSync("Movies.json", jsonString, "utf-8", (err) => {
     if (err) throw err;
-    console.log("Data added to file");
+    console.log("Movie added to file");
   });
 
   res.status(200).json({

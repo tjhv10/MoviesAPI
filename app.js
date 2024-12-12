@@ -4,7 +4,13 @@ const bodyParser = require("body-parser");
 const feedRoutes = require("./routes/feed");
 
 const app = express();
-
+app.use((req, res, next) => {
+  console.log("Request Details:");
+  console.log("  Endpoint:", req.url);
+  console.log("  HTTP Method:", req.method);
+  console.log("  User Agent:", req.headers["user-agent"]);
+  next();
+});
 app.use(bodyParser.json());
 
 app.use("/feed", feedRoutes);
