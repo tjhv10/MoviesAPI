@@ -18,7 +18,7 @@ exports.getMoviesById = (req, res) => {
 };
 
 // /addMovie
-exports.createPost = (req, res, next) => {
+exports.createPost = (req, res) => {
   const { title, overview, director, genres, releaseDate } = req.body;
 
   let readData = fs.readFileSync("Movies.json");
