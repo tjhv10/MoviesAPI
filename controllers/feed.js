@@ -1,5 +1,6 @@
 const fs = require("fs");
 var data = require("../Movies.json");
+
 // /getAllMovies
 exports.getMovies = (req, res) => {
   res.status(200).json({
@@ -35,6 +36,7 @@ exports.createPost = (req, res) => {
     genres: genres,
     releaseDate: releaseDate,
   };
+
   const jsonData = JSON.parse(readData);
   jsonData.push(movie);
   jsonString = JSON.stringify(jsonData);
@@ -49,6 +51,7 @@ exports.createPost = (req, res) => {
     title: movie.title,
   });
 };
+
 // /deleteMovie/:id
 exports.deleteMoviesById = (req, res) => {
   let id = parseInt(req.url.split("/")[2]);
@@ -63,6 +66,7 @@ exports.deleteMoviesById = (req, res) => {
     id,
   });
 };
+
 // /editMovie/:id
 exports.editMovieById = (req, res) => {
   const { title, overview, director, genres, releaseDate } = req.body;
@@ -75,6 +79,7 @@ exports.editMovieById = (req, res) => {
     genres: genres,
     releaseDate: releaseDate,
   };
+
   data.splice(id - 1, 1, movie);
   console.log(data);
   jsonString = JSON.stringify(data);
@@ -82,6 +87,7 @@ exports.editMovieById = (req, res) => {
     if (err) throw err;
     console.log("Data added to file");
   });
+
   res.status(200).json({
     id,
   });
