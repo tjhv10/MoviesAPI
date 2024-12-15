@@ -9,9 +9,9 @@
   },
   {
     "id": 2,
-    "title": "The Shawshank Redemption",
+    "title": "The Shawshank Redemptionssss",
     "overview": "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
-    "director": "Frank Darabont",
+    "director": "me",
     "genres": ["Drama"],
     "releaseDate": "1994-09-22"
   },
@@ -78,13 +78,5 @@
     "director": "Bong Joon Ho",
     "genres": ["Comedy", "Drama", "Thriller"],
     "releaseDate": "2019-05-30"
-  },
-  {
-    "id": 11,
-    "title": "hello",
-    "overview": "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a CEO.",
-    "director": "Christopher Nolan",
-    "genres": ["Action", "Adventure", "Sci-Fi"],
-    "releaseDate": "2010-07-16"
   }
 ]

@@ -1,20 +1,26 @@
 const fs = require("fs");
 var data = require("../Movies.json");
+const { log } = require("console");
+// don't repeat yourself in an object
 
+const writeToJsonFile = (jsonString) => {
+  fs.writeFileSync("Movies.json", jsonString, "utf-8", (err) => {
+    if (err) throw err;
+    console.log("Movie added to file");
+  });
+};
 // /getAllMovies
-exports.getMovies = (req, res) => {
-  res.status(200).json({
+exports.getMovies = (_, res) => {
+  res.json({
     data,
   });
 };
 
 // /getMovie/:id
 exports.getMoviesById = (req, res) => {
-  var movie = data.filter(function (entry) {
-    return entry.id === parseInt(req.url.split("/")[2]);
-  });
-  res.status(200).json({
-    movie,
+  const id = parseInt(req.params.id);
+  res.json({
+    movie: data.filter((entry) => entry.id === id),
   });
 };
 
@@ -22,19 +28,17 @@ exports.getMoviesById = (req, res) => {
 exports.createPost = (req, res) => {
   const { title, overview, director, genres, releaseDate } = req.body;
 
-  let readData = fs.readFileSync("Movies.json");
-  console.log(readData);
+  const readData = fs.readFileSync("Movies.json");
 
-  var lastId = data[data.length - 1].id;
-  console.log(lastId);
+  const lastId = data[data.length - 1].id;
 
   const movie = {
     id: lastId + 1,
-    title: title,
-    overview: overview,
-    director: director,
-    genres: genres,
-    releaseDate: releaseDate,
+    title,
+    overview,
+    director,
+    genres,
+    releaseDate,
   };
 
   const jsonData = JSON.parse(readData);
@@ -53,42 +57,39 @@ exports.createPost = (req, res) => {
 };
 
 // /deleteMovie/:id
-exports.deleteMoviesById = (req, res) => {
-  let id = parseInt(req.url.split("/")[2]);
+exports.deleteMoviesById = (_, res) => {
   data.splice(id - 1, 1);
-  console.log(data);
   jsonString = JSON.stringify(data);
-  fs.writeFileSync("Movies.json", jsonString, "utf-8", (err) => {
-    if (err) throw err;
-    console.log("Movie added to file");
-  });
-  res.status(200).json({
+  writeToJsonFile(jsonString);
+  res.json({
     id,
   });
 };
 
 // /editMovie/:id
 exports.editMovieById = (req, res) => {
-  const { title, overview, director, genres, releaseDate } = req.body;
-  let id = parseInt(req.url.split("/")[2]);
-  const movie = {
-    id: id,
-    title: title,
-    overview: overview,
-    director: director,
-    genres: genres,
-    releaseDate: releaseDate,
-  };
+  const id = parseInt(req.params.id);
+  const movieToEdit = data.filter((entry) => entry.id === id);
+  if (movieToEdit.length !== 0) {
+    console.log(movieToEdit);
 
-  data.splice(id - 1, 1, movie);
-  console.log(data);
-  jsonString = JSON.stringify(data);
-  fs.writeFileSync("Movies.json", jsonString, "utf-8", (err) => {
-    if (err) throw err;
-    console.log("Movie added to file");
-  });
-
-  res.status(200).json({
-    id,
-  });
+    const { title, overview, director, genres, releaseDate } = req.body;
+    const editedMovie = {
+      id: id,
+      title: title !== undefined ? title : movieToEdit[0].title,
+      overview: overview !== undefined ? overview : movieToEdit[0].overview,
+      director: director !== undefined ? director : movieToEdit[0].director,
+      genres: genres !== undefined ? genres : movieToEdit[0].genres,
+      releaseDate:
+        releaseDate !== undefined ? releaseDate : movieToEdit[0].releaseDate,
+    };
+    data.splice(id - 1, 1, editedMovie);
+    writeToJsonFile(JSON.stringify(data));
+    res.json({
+      editedMovie,
+    });
+  } else
+    res.json({
+      Messege: "Movie is not defined",
+    });
 };
